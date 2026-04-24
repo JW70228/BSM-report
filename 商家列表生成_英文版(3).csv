@@ -1,0 +1,141 @@
+id,city,name,address,region,category,led_size,impressions_per_day,Daily operating hours,Installation Date
+1,Auckland, AUCKLAND CITY,27 Panels,,,,,,
+2,Auckland, RESTAURANT,,,,,,,
+3,Auckland,The Sea Food Paradise Restaurant ,"22 Jellicoe Street, Auckland CBD, Auckland 1010",Auckland City,Restaurant,2.01*2.97m,300,8,
+4,Auckland,Mr Charcoal,"184 Dominion Road, Mount Eden, Auckland 1024",Auckland City,Restaurant,1.21*2.33m,200,8,
+5,Auckland,Wan Fu Yuan Restaurant Newmarket,"10 Suiter Street, Newmarket, Auckland 1023",Auckland City,Restaurant,1.21*2.33m,200,8,
+6,Auckland,Golden Jade Restaurant,"417 Manukau Road, Epsom, Auckland 1023",Auckland City,Restaurant,1.05*2.01m,200,8,2024/3/21
+7,Auckland,Guangdong BBQ,"147 Carlton Gore Road, Newmarket, Auckland 1023",Auckland City,Restaurant,1.05*2.01m,200,8,2024/4/16
+8,Auckland,Cafe Greenfingers,"176/182 Shore Road, Remuera, Auckland 1052",Auckland City,Restaurant,65 inch,200,8,2024/4/17
+9,Auckland,Golden Garden Restaurant,"583 Dominion Road, Mount Eden, Auckland 1041",Auckland City,Restaurant,1.21*2.33m,300,8,2024/5/3
+10,Auckland,Hustle BBQ,"88 Broadway, Newmarket, Auckland 1023",Auckland City,Restaurant,65 inch,196,8,2024/6/17
+11,Auckland,Little Elephants Cafe and Eatery,"179 Ladies Mile, Ellerslie, Auckland 1051",Auckland City,Restaurant,65 inch,100,8,2024/6/18
+12,Auckland,Shaolin Kung Fu Noodles Dominion Rd,"636 Dominion Road, Mount Eden, Auckland",Auckland City,Restaurant,65 inch,130,8,2024/6/27
+13,Auckland,Yong Fa Restaurant - Dominion Road,"1001 Dominion Road, Mount Roskill, Auckland",Auckland City,Restaurant,65 inch,160,8,2024/8/22
+14,Auckland,Chongqing Noodles - Dominion Road,"340 Dominion Road, Mount Eden, Auckland",Auckland City,Restaurant,65 inch,200,8,2024/8/22
+15,Auckland,Yong Fa Restaurant - Newmarket,"4 Kingdon Street, Newmarket, Auckland",Auckland City,Restaurant,66 inch,160,8,2024/8/26
+16,Auckland,Ding Private Kitchen,"15 Alpers Avenue, Epsom, Auckland",Auckland City,Restaurant,65 inch,80,8,2024/9/3
+17,Auckland,King Made Noodles - Newmarket,"440 Khyber Pass Road, Newmarket, Auckland",Auckland City,Restaurant,65inch,180,8,2024/10/23
+18,Auckland,Umi BBQ,"1 Hobson Street, Auckland Central, Auckland",Auckland City,Restaurant,1.05*2.01m,170,8,2025/2/11
+19,Auckland,The City Well Hot Pot,"152 Great South Road, Epsom, Auckland",Auckland City,Restaurant,65 inch,140,8,2025/2/23
+20,Auckland,Hunan Restaurant,"710 Dominion Road, Mount Eden, Auckland 1041",Auckland City,Restaurant,65 inch,400,8,2025/4/27
+21,Auckland,Hot Pot Skewers Restaurant,"27 Cross Street, Auckland Central, Auckland 1010",Auckland City,Restaurant,1.05*2.01m,150,8,2025/9/23
+22,Auckland,Tang BBQ Restaurant - Dominion Road,"215 Dominion Road, Mount Eden, Auckland",Auckland City,Restaurant,65 inch,236,8,2025/10/16
+23,Auckland,The Orient Café,"453 Great South Road, Penrose, Auckland 1061",Auckland City,Restaurant,1.05*2.01m,100,8,2026/2/17
+24,Auckland, SUPERMARKET,,,,,,,
+25,Auckland,New Save Asian Supermarket,"4-6 Short Street, Newmarket, Auckland 1023",Auckland City,Supermarket,1.53*2.97m,450,10,
+26,Auckland,Yi Cart Asian Supermarket,"911 Dominion Road, Mount Roskill, Auckland 1041",Auckland City,Supermarket,1.05*2.01m,"1,043",10,
+27,Auckland,Dahua Supermarket,"83 Dominion Road, Mount Eden, Auckland 1024",Auckland City,Supermarket,1.05*2.01m,700,10,
+28,Auckland,Mount Roskill Fresh Supermarket,"3/32 Carr Road, Three Kings, Auckland 1042",Auckland City,Supermarket,1.05*2.01m,500,10,2024/5/2
+29,Auckland,Furein Asian Supermarket,"Basement, Unit 1A/239 Queen Street, CBD, Auckland 1011",Auckland City,Supermarket,1.05*2.01m,800,10,2024/6/19
+30,Auckland, SPORTS CENTRE,,,,,,,
+31,Auckland,Sanda Academy,"555 Great South Road, Penrose, Auckland",Auckland City,Sports Centre,65 inch,45,12,2024/11/12
+32,Auckland,NORTH SHORE CITY,35 Panels,,,,,,
+33,Auckland, RESTAURANT,,,,,,,
+34,Auckland,Yue's Dumpling Kitchen Albany Store,"21/23 Corinthian Drive, Albany, Auckland 0632",North Shore City,Restaurant,1.21*2.33m,250,8,
+35,Auckland,Golden Rooster Chinese Restaurant,"100 Rosedale Road, Rosedale, Auckland 0632",North Shore City,Restaurant,1.21*2.33m,340,8,
+36,Auckland,Asian Wok,"3 Bute Rd, Browns Bay, Auckland 0630",North Shore City,Restaurant,1.21*2.33m,300,8,
+37,Auckland,Wow Buffet,"29 Link Drive, Wairau Valley, Auckland 0627",North Shore City,Restaurant,1.21*2.33m,100,8,
+38,Auckland,The Base Bar & Grill,"1/83 Apollo Drive, Rosedale, Auckland 0632",North Shore City,Restaurant,1.21*2.33m,100,8,2024/3/14
+39,Auckland,Mr Charcoal - Albany,"254 Cornerstone Drive, Albany, Auckland 0632",North Shore City,Restaurant,1.05*2.01m,200,8,2024/3/19
+40,Auckland,Shaolin Kung Fu Noodles,"357 Albany Highway, Rosedale, Auckland 0632",North Shore City,Restaurant,1.21*2.33m,140,8,2024/5/31
+41,Auckland,Hyatt Fusion Albany,"3/270 Oteha Valley Road, Albany, Auckland 0632",North Shore City,Restaurant,1.21*2.33m,200,8,2024/6/5
+42,Auckland,Golden City Chinese Cuisine,"8A/21-23 Corinthian Drive, Albany, Auckland 0632",North Shore City,Restaurant,65 inch,100,8,2024/6/18
+43,Auckland,Wide Bench Old Stove Hotpot,"94 Rosedale Road, Rosedale, Auckland 0632",North Shore City,Restaurant,65 inch,144,8,2024/6/19
+44,Auckland,Wan Fu Yuan Restaurant Albany,"25 Corban Avenue, Albany, Auckland",North Shore City,Restaurant,65 inch,160,8,2024/6/27
+45,Auckland,Who's Kitchen,"49C William Pickering Drive, Rosedale, Auckland",North Shore City,Restaurant,1.05*2.01m,120,8,2024/7/19
+46,Auckland,Tang BBQ Restaurant Auckland,"103 Clyde Road, Browns Bay, Auckland",North Shore City,Restaurant,1.05*2.01m,160,8,2024/7/31
+47,Auckland,Fortune 7 BBQ,"6/20 Link Drive, Wairau Valley, Auckland",North Shore City,Restaurant,1.05*2.01m,180,8,2024/8/9
+48,Auckland,Yong Li Noodle,"40 Rosedale Road, Rosedale, Auckland",North Shore City,Restaurant,65 inch,400,8,2024/8/22
+49,Auckland,Yong's Hand Pulled Noodles,"15 Pearn Crescent, Northcote, Auckland",North Shore City,Restaurant,65 inch,132,8,2024/8/22
+50,Auckland,PinYue Shanghai Style,"10a/25 Corinthian Drive, Albany, Auckland",North Shore City,Restaurant,1.05*2.01m,160,8,2024/8/26
+51,Auckland,Feizap Mailaan,"9/14 Corinthian Drive, Albany, Auckland",North Shore City,Restaurant,65 inch,160,8,2024/9/17
+52,Auckland,Chongqing Noodles Albany,"9a/25 Corinthian Drive, Albany, Auckland",North Shore City,Restaurant,1.05*2.01m,130,8,2024/9/24
+53,Auckland,First Day Fusion,"4a/270 Oteha Valley Road, Albany, Auckland",North Shore City,Restaurant,1.05*2.01m,252,8,2024/10/2
+54,Auckland,Double Happy Restaurant Albany,"7A/21 - 23 Corinthian Drive, Albany, Auckland",North Shore City,Restaurant,65 inch,160,8,2024/11/10
+55,Auckland,Asian Wok Yum Cha Albany,"28 Corinthian Drive, Albany, Auckland",North Shore City,Restaurant,1.05*2.01m,240,8,2024/11/22
+56,Auckland,Yum Lamb Hotpot,"343 Albany Highway, Rosedale, Auckland",North Shore City,Restaurant,65 inch,140,8,2024/12/13
+57,Auckland,Han hot pot,"11/8 Oracle Drive, Albany, Auckland",North Shore City,Restaurant,65 inch,180,8,2025/3/19
+58,Auckland,Lunar House,"6/8 Oracle Drive, Albany, Auckland",North Shore City,Restaurant,65 inch,180,8,2025/3/30
+59,Auckland,Mad Pot,"11B,21/23 Corinthian Drive, Albany, Auckland 0632",North Shore City,Restaurant,65 inch,200,8,2025/6/2
+60,Auckland,Meat and More Butchery,"Unit 14/170 Wairau Road, Wairau Valley, Auckland 0627",North Shore City,Restaurant,65 inch,200,8,2025/6/25
+61,Auckland,Chuan Bei Restaurant,"30/32 Clyde Road, Browns Bay, Auckland 0630",North Shore City,Restaurant,65 inch,56,8,2025/10/3
+62,Auckland,Fresh Bite,"9/96 Rosedale Road, Albany, Auckland 0632",North Shore City,Restaurant,1.05*2.01m,110,8,2025/11/12
+63,Auckland,Golden Origin BBQ,"13A Link Drive, Wairau Valley, Auckland 0627",North Shore City,Restaurant,1.05*2.01m,120,8,2026/1/29
+64,Auckland, SUPERMARKET,,,,,,,
+65,Auckland,Tai Ping Albany,"92 Rosedale Road, Rosedale, Auckland",North Shore City,Supermarket,1.05*2.01m,"1,200",10,2024/11/12
+66,Auckland,Lianhua Supermarket Browns Bay,"27 Bute Road, Browns Bay, Auckland",North Shore City,Supermarket,1.05*2.01m,500,10,2024/12/12
+67,Auckland,Dahua Supermarket,"Shop 4/100 Don McKinnon Drive, Albany, Auckland 0632",North Shore City,Supermarket,2.65*1.37m,"1,000",10,2025/8/6
+68,Auckland,Fu Market,"75G Porana Road, Glenfield, Auckland 0627",North Shore City,Supermarket,1.21*2.33m,"1,000",10,2025/10/8
+69,Auckland, SPORTS CENTRE,,,,,,,
+70,Auckland,Evergreen Sports,"22B Corinthian Drive. Albany, Auckland",North Shore City,Sports Centre,1.05*2.01m,180,6.2,2024/10/17
+71,Auckland, SOUTH AUCKLAND,5 Panels,,,,,,
+72,Auckland, RESTAURANT,,,,,,,
+73,Auckland,Lucky Star Restaurant,"125 Great South Road, Papatoetoe, Manukau City 2025",South,Restaurant,1.05*2.01m,210,8,2024/4/12
+74,Auckland,Golden Hyatt Chinese Restaurant,"140/144 King Street, Pukekohe 2120",South,Restaurant,1.05*2.01m,400,8,2025/5/27
+75,Auckland,King Buffet,"10 King Street, Ōtāhuhu, Auckland 1062",South,Restaurant,1.21*2.33m,480,8,2026/2/25
+76,Auckland, SUPERMARKET,,,,,,,
+77,Auckland,Whenuapai Gardens & Orchards,"76-82 Atkinson Ave Otahuhu, Auckland 1062",South,Supermarket,1.05*2.01m,700,10,2024/3/20
+78,Auckland, SPORTS CENTRE,,,,,,,
+79,Auckland,Otahuhu Badminton Club,"231 Princes Street East, Ōtāhuhu, Auckland",South,Sports Centre,1.05*2.01m,180,16,2025/2/21
+80,Auckland, EAST AUCKLAND,14 Panels,,,,,,
+81,Auckland, RESTAURANT,,,,,,,
+82,Auckland,Nyonya Seafood Restaurant,"491F Pakuranga Road, Highland Park, Auckland 2010",East,Restaurant,1.21*2.33m,420,8,
+83,Auckland,Mandarin Palace,"9 Aviemore Drive, Highland Park, Auckland 2010",East,Restaurant,1.21*2.33m,400,8,
+84,Auckland,Silk Wok Restaurant,"295 Ti Rakau Drive, Burswood, Auckland 2013",East,Restaurant,1.21*2.33m,200,8,2024/12/16
+85,Auckland,Golden Fortune Chinese Restaurant,"29 Aviemore Drive, Highland Park, Auckland 2010",East,Restaurant,1.05*2.01m,220,8,2024/6/17
+86,Auckland,The Dining Hall Hot Pot,"90B Whitford Road, Somerville, Auckland",East,Restaurant,1.05*2.01m,170,8,2024/6/25
+87,Auckland,Xue Yuan Shanghai Cuisine,"1/20 Torrens Road, Burswood, Auckland",East,Restaurant,1.05*2.01m,160,8,2024/8/13
+88,Auckland,DAGU Rice Noodle - Botany Downs,"A/451 Ti Rakau Drive, Botany Downs, Auckland",East,Restaurant,1.21*2.33m,140,8,2024/9/10
+89,Auckland,Lobster Palace Restaurant,"3/298 Ti Rakau Drive, Manakau, Auckland",East,Restaurant,1.05*2.01m,550,8,2024/9/19
+90,Auckland,Chen kee,"d/451 Ti Rakau Drive, Huntington Park, Auckland",East,Restaurant,1.05*2.01m,160,8,2024/11/15
+91,Auckland,Yizu BBQ & Seafood,"125 Meadowland Drive, Howick, Auckland",East,Restaurant,4.57*1.69m,170,8,2025/1/27
+92,Auckland,Zhu‘s Kitchen,"15C Torrens Road, Burswood, Auckland 2013",East,Restaurant,65 inch,100,8,2025/7/9
+93,Auckland,Sanku Maots’ai (Botany Junction),"277 Te Irirangi Drive, Flat Bush, Auckland 2019",East,Restaurant,65 inch,84,8,2026/1/29
+94,Auckland, SUPERMARKET,,,,,,,
+95,Auckland,QX Asian Supermarket,"1/308 Te Irirangi Drive, Flat Bush, Auckland",East,Supermarket,1.05*2.01m,700,10,2024/9/3
+96,Auckland, WEST AUCKLAND,5 Panels,,,,,,
+97,Auckland, RESTAURANT,,,,,,,
+98,Auckland,Fantasy Korean BBQ (Henderson),"130A Lincoln Road, Henderson, Auckland 0610",West,Restaurant,1.53*2.97m,220,8,2024/2/27
+99,Auckland,Elegance Chinese Restaurant,"26/30 Totara Avenue, New Lynn, Auckland",West,Restaurant,1.05*2.01m,400,8,2024/9/4
+100,Auckland,The Yacht Chinese Restaurant,"2023 Great North Road, Avondale, Auckland",West,Restaurant,1.05*2.01m,200,8,2024/12/20
+101,Auckland,Yue's Dumpling Kitchen - Henderson,"2/155 Lincoln Road, Henderson, Auckland",West,Restaurant,1.21*2.33m,160,8,2025/2/11
+102,Auckland, SERVICES CENTRE,,,,,,,
+103,Auckland,Sam's Motors Avondale,"5 Saint Jude Street, Avondale, Auckland",West,Service Centre,65 inch,70,9,2024/6/17
+104,Christchurch, CHRISTCHURCH,9 Panels,,,,,,
+105,Christchurch, RESTAURANT,,,,,,,
+106,Christchurch,Fuji Restaurant,"16 Nelson Street, Riccarton, Christchurch",Christchurch,Restaurant,1.05*2.01m,160,8,2024/7/22
+107,Christchurch,South Garden Chinese Restaurant,"4/6 Brake Street, Upper Riccarton, Christchurch",Christchurch,Restaurant,1.05*2.01m,360,8,2024/7/22
+108,Christchurch,Red Bowl Chinese Restaurant,"57 Mandeville St, Riccarton, Christchurch",Christchurch,Restaurant,1.05*2.01m,240,8,2024/7/22
+109,Christchurch,King Made Noodles Christchurch,"104 Riccarton Road, Riccarton, Christchurch",Christchurch,Restaurant,1.05*2.01m,96,8,2024/7/23
+110,Christchurch,Mr Charcoal - CHCH,"49 Manchester Street, Central City, Christchurch",Christchurch,Restaurant,1.05*2.01m,260,8,2024/7/23
+111,Christchurch,Phoenix Restaurant,"49 Manchester Street, Central City, Christchurch",Christchurch,Restaurant,1.05*2.01m,280,8,2024/7/23
+112,Christchurch,Taichi Restaurant,"544 Memorial Avenue, Christchurch 8053",Christchurch,Restaurant,1.05*2.01m,260,8,2024/7/23
+113,Christchurch,J-BINGS,"Lichfield Street, Christchurch Central City, Christchurch 8011",Christchurch,Restaurant,1.05*2.01m,300,8,2025/4/25
+114,Christchurch,Nan Hotpot Christchurch,"8 Brake Street, Upper Riccarton, Christchurch 8041",Christchurch,Restaurant,1.05*2.01m,105,8,2026/3/19
+115,Queenstown, QUEENSTOWN,5 Panels,,,,,,
+116,Queenstown, RESTAURANT,,,,,,,
+117,Queenstown,King Made Noodles Queenstown,"5 Athol Street, Queenstown 9300",Queenstown,Restaurant,1.05*2.01m,300,8,2024/4/5
+118,Queenstown,Cody's Restaurant,"Level 1/24 Beach Street, Queenstown 9300",Queenstown,Restaurant,1.05*2.01m,400,8,2024/4/5
+119,Queenstown,Frankton Ale House,"1 Gray Street, Frankton, Queenstown",Queenstown,Restaurant,1.05*2.01m,280,8,2024/12/11
+120,Queenstown,No.8 Noodle Bar,"Shop A12/19 Grant Road, Frankton, Queenstown",Queenstown,Restaurant,1.05*2.01m,130,8,2024/12/11
+121,Queenstown, SUPERMARKET,,,,,,,
+122,Queenstown,New Star Asian Supermarket,"4/5 Hawthorne Drive, Frankton, Queenstown 9300",Queenstown,Supermarket,1.05*2.01m,500,10,2024/12/11
+123,Hamilton, HAMILTON,5 Panels,,,,,,
+124,Hamilton, RESTAURANT,,,,,,,
+125,Hamilton,Canton Hong Kong Restaurant,"32 Alexandra Street, Hamilton Central, Hamilton 3204",Hamilton,Restaurant,1.05*2.01m,250,8,2025/6/2
+126,Hamilton,Nan Hot Pot Limited,"232 Victoria Street, Hamilton Central, Hamilton 3204",Hamilton,Restaurant,1.05*2.01m,120,8,2025/6/29
+127,Hamilton, SUPERMARKET,,,,,,,
+128,Hamilton,New Save Supermarket City,"130-136 Tristram Street, Central, Hamilton",Hamilton,Supermarket,1.05*2.01m,800,10,2024/7/10
+129,Hamilton,New Save Supermarket Northgate,"The Base Parade, Northgate, Hamilton",Hamilton,Supermarket,1.05*2.01m,700,10,2024/7/10
+130,Hamilton,Wellmart Asian Supermarket,"25/27A/27C Vialou Street, Hamilton Central, Hamilton 3204",Hamilton,Supermarket,2.97*1.53m,600,10,2024/12/30
+131,Rotorua, ROTORUA,2 Panels,,,,,,
+132,Rotorua, RESTAURANT,,,,,,,
+133,Rotorua,Soho Restaurant,"1199 Amohau Street, Victoria, Rotorua",Rotorua,Restaurant,1.05*2.01m,320,8,2024/7/11
+134,Rotorua,Chinese delights,"1225 Amohau Street, Rotorua 3010",Rotorua,Restaurant,1.05*2.01m,160,8,2024/12/5
+135,Wellington, WELLINGTON,4 Panels,,,,,,
+136,Wellington,Mr Jis Kitchen,"88 Queens Drive, Lower Hutt 5010",Wellington,Restaurant,1.05*2.01m,165,8,2025/6/22
+137,Wellington,New Fortuna Restaurant,"193 Jackson Street, Petone, Lower Hutt 5012",Wellington,Restaurant,1.05*2.01m,180,8,2025/8/25
+138,Wellington,The Dumpling Company,"44 The Terrace, Wellington Central, Wellington 6011",Wellington,Restaurant,1.05*2.01m,195,8,2025/9/4
+139,Wellington,Majestic Cuisine,"11B Courtenay Place, Te Aro, Wellington 6011",Wellington,Restaurant,1.05*2.01m,180,8,2025/9/4
+140,Auckland,CHENGDIEYI Hotpot,"Level1/3 Arawa Street, Grafton, Auckland 1023",Auckland City,Restaurant,65 inch,240,8,2026/4/15
