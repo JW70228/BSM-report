@@ -116,13 +116,10 @@
       flex-direction: column;
       page-break-after: always;
     }
-    .cover-page, .contact-page {
+    .cover-page,
+    .contact-page {
       color: #fff;
-      background:
-        linear-gradient(165deg, rgba(255,255,255,.04) 0 18%, transparent 18% 100%),
-        linear-gradient(168deg, transparent 0 15%, rgba(255,255,255,.06) 15% 29%, transparent 29% 100%),
-        linear-gradient(10deg, transparent 0 70%, rgba(255,255,255,.06) 70% 83%, transparent 83% 100%),
-        linear-gradient(120deg, #27449d 0%, #2f4fa8 35%, #244194 100%);
+      background: url("img/bgbg.jpg") center center / cover no-repeat;
     }
     .cover-header {
       padding: 92px 88px 0;
@@ -207,7 +204,7 @@
     .overview-top {
       display: grid;
       grid-template-columns: 300px 1fr;
-      gap: 28px;
+      gap: 15px;
       align-items: start;
     }
     .overview-right {
@@ -218,8 +215,8 @@
 
     .overview-right-top {
       display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      gap: 34px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       align-items: start;
     }
     .ring-col {
@@ -264,25 +261,38 @@
       background: #fff;
     }
     .ptext .name { font-size: 18px; font-weight: 800; color: #222; }
-    .ptext .val { font-size: 18px; font-weight: 800; color: var(--bsm-blue-3); }
-    .overview-info {
+    .ptext .val { font-size: 15px; font-weight: 800; color: var(--bsm-blue-3); }
+        .overview-info {
       font-size: 18px;
       font-weight: 800;
-      line-height: 1.6;
+      line-height: 1.45;
       padding-top: 6px;
       display: grid;
-      grid-template-columns: 210px 1fr;
+      grid-template-columns: auto minmax(0, 1fr);
       column-gap: 20px;
       row-gap: 6px;
       align-items: center;
+      width: 100%;
+      min-width: 0;
     }
+
     .overview-info > div {
+      min-width: 0;
+    }
+
+    .overview-info .info-label {
       white-space: nowrap;
     }
 
     .overview-info .info-value {
+      justify-self: stretch;
       text-align: right;
-      justify-self: end;   /* ✅ 关键 */
+      white-space: nowrap;
+      min-width: 0;
+      max-width: 100%;
+      overflow: visible;
+      font-size: 18px;
+      transform-origin: right center;
     }
    .overview-table {
       margin-top: 0;
@@ -377,8 +387,24 @@
       background: #f7f7f7;
       border: 1px solid #d4d4d4;
       padding: 18px 24px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      font-size: 20px; font-weight: 800; line-height: 1.55;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+    .progress-line {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      column-gap: 20px;
+      align-items: start;
+    }
+    .progress-line .pl-label { white-space: nowrap; }
+    .progress-line .pl-value {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
     .charts {
       margin-top: 30px;
@@ -443,6 +469,7 @@
     }
     .fbar-labels .active { color: #324ea4; }
     .kpi-box { margin: 18px 8px 0; }
+    .kpi-box.extra-kpi { margin-top: 26px; }
     .kpi-label {
       background: var(--bsm-blue); color: #fff; font-weight: 900; text-transform: uppercase;
       padding: 8px 12px; font-size: 18px;
@@ -552,6 +579,7 @@
     .proof-box img {
       width: 100%;
       height: 100%;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       object-position: center;
       display: block;
@@ -805,6 +833,42 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>
+    function imageFileTo1920x1080DataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Failed to read proof image.'));
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = () => reject(new Error('Failed to load proof image.'));
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1920;
+            canvas.height = 1080;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const targetRatio = 1920 / 1080;
+            const imageRatio = img.width / img.height;
+            let sx = 0, sy = 0, sw = img.width, sh = img.height;
+
+            if (imageRatio > targetRatio) {
+              sw = img.height * targetRatio;
+              sx = (img.width - sw) / 2;
+            } else if (imageRatio < targetRatio) {
+              sh = img.width / targetRatio;
+              sy = (img.height - sh) / 2;
+            }
+
+            ctx.drawImage(img, sx, sy, sw, sh, 0, 0, 1920, 1080);
+            resolve(canvas.toDataURL('image/jpeg', 0.92));
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
     async function exportPDF() {
       try {
         if (!window.html2canvas) {
@@ -1282,11 +1346,11 @@ function renderOverviewPage(c) {
             </div>
 
             <div class="overview-info">
-              <div>Campaign:</div><div class="info-value">${escapeHtml(c.campaignName)}</div>
-              <div>Campaign ID:</div><div class="info-value">${escapeHtml(c.campaignId)}</div>
-              <div>Client:</div><div class="info-value">${escapeHtml(c.client)}</div>
-              <div>Campaign Start Date:</div><div class="info-value">${formatDateDDMMYYYY(c.start)}</div>
-              <div>Campaign End Date:</div><div class="info-value">${formatDateDDMMYYYY(c.end)}</div>
+              <div class="info-label">Campaign:</div><div class="info-value">${escapeHtml(c.campaignName)}</div>
+              <div class="info-label">Campaign ID:</div><div class="info-value">${escapeHtml(c.campaignId)}</div>
+              <div class="info-label">Client:</div><div class="info-value">${escapeHtml(c.client)}</div>
+              <div class="info-label">Campaign Start Date:</div><div class="info-value">${formatDateDDMMYYYY(c.start)}</div>
+              <div class="info-label">Campaign End Date:</div><div class="info-value">${formatDateDDMMYYYY(c.end)}</div>
             </div>
           </div>
 
@@ -1377,12 +1441,12 @@ function renderOverviewPage(c) {
         <div class="progress-body">
           <div class="progress-info">
             <div>
-              <div>Media Owner:&nbsp;&nbsp;&nbsp;&nbsp; Big Screen Media Limited</div>
-              <div>Campaign:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${escapeHtml(c.campaignName)}</div>
+              <div class="progress-line"><span class="pl-label">Media Owner:</span><span class="pl-value">Big Screen Media Limited</span></div>
+              <div class="progress-line"><span class="pl-label">Campaign:</span><span class="pl-value">${escapeHtml(c.campaignName)}</span></div>
             </div>
             <div>
-              <div>Campaign Weeks:&nbsp;&nbsp;&nbsp;&nbsp; ${escapeHtml(c.weeksText)}</div>
-              <div>Digital Delivery:&nbsp;&nbsp;&nbsp;&nbsp; ${numberFmt(c.totals.actualPlays)} of ${numberFmt(c.contract.plays)}</div>
+              <div class="progress-line"><span class="pl-label">Campaign Weeks:</span><span class="pl-value">${escapeHtml(c.weeksText)}</span></div>
+              <div class="progress-line"><span class="pl-label">Digital Delivery:</span><span class="pl-value">${numberFmt(c.totals.actualPlays)} of ${numberFmt(c.contract.plays)}</span></div>
             </div>
           </div>
           <div class="charts">
@@ -1429,7 +1493,7 @@ function renderOverviewPage(c) {
             <div class="kpi-value"><strong>${numberFmt(b.contract)}</strong>${b.suffix}</div>
           </div>
 
-          <div class="kpi-box">
+          <div class="kpi-box extra-kpi">
             <div class="kpi-label">Extra ${b.title.replace(':','')}</div>
             <div class="kpi-value red">
               <strong>${numberFmt(b.extra)}</strong>${b.suffix}
@@ -1571,6 +1635,41 @@ function renderOverviewPage(c) {
   </section>`;
 }
 
+
+    function fitOverviewValues() {
+      document.querySelectorAll('.overview-info').forEach(box => {
+        const items = Array.from(box.children);
+
+        for (let i = 0; i < items.length; i += 2) {
+          const label = items[i];
+          const value = items[i + 1];
+          if (!label || !value) continue;
+
+          value.style.fontSize = '18px';
+          value.style.transform = 'none';
+          value.style.width = '';
+
+          const boxWidth = box.clientWidth;
+          const labelWidth = label.getBoundingClientRect().width;
+          const gap = parseFloat(getComputedStyle(box).columnGap) || 0;
+          const available = Math.max(80, boxWidth - labelWidth - gap);
+
+          value.style.width = available + 'px';
+
+          let size = 18;
+          while (value.scrollWidth > available && size > 8) {
+            size -= 0.5;
+            value.style.fontSize = size + 'px';
+          }
+
+          if (value.scrollWidth > available) {
+            const scale = Math.max(0.72, available / value.scrollWidth);
+            value.style.transform = `scaleX(${scale})`;
+          }
+        }
+      });
+    }
+
     function loadCsvText(text) {
       state.rawRows = parseCSV(text).map(normalizeRow).filter(isValidScreen);
       if (!state.rawRows.length) {
@@ -1590,19 +1689,20 @@ function renderOverviewPage(c) {
     });
 
     els.proofInputs.forEach((input, index) => {
-      input.addEventListener('change', e => {
+      input.addEventListener('change', async e => {
         const file = e.target.files[0];
         if (!file) {
           state.proofImages[index] = null;
-          if (state.computed) render();
+          if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
           return;
         }
-        const reader = new FileReader();
-        reader.onload = evt => {
-          state.proofImages[index] = evt.target.result;
-          if (state.computed) render();
-        };
-        reader.readAsDataURL(file);
+        try {
+          state.proofImages[index] = await imageFileTo1920x1080DataURL(file);
+          if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
+        } catch (err) {
+          console.error(err);
+          alert(err.message || 'Proof image resize failed.');
+        }
       });
     });
 
@@ -1611,6 +1711,7 @@ function renderOverviewPage(c) {
         if (!state.rawRows.length) throw new Error('Please upload a CSV first.');
         state.computed = buildComputed();
         render();
+        requestAnimationFrame(fitOverviewValues);
         els.statusText.textContent = `Report generated: ${state.computed.details.length} selected screens, ${state.computed.marketsCount} markets, ${state.computed.platformsCount} platforms.`;
       } catch (err) {
         alert(err.message);
@@ -1620,6 +1721,8 @@ function renderOverviewPage(c) {
     els.printBtn.addEventListener('click', () => {
       exportPDF();
     });
+
+    window.addEventListener('resize', fitOverviewValues);
   </script>
 </body>
 </html>
