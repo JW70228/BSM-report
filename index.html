@@ -1590,7 +1590,6 @@ function renderOverviewPage(c) {
         <div class="proof-grid">
           ${Array.from({length:4}).map((_,i) => { const src = state.proofImages[i]; return `<div class="proof-box">${src ? `<img src="${src}" alt="Proof image ${i+1}" />` : `<div class="proof-icon">🖼</div><div>Placeholder image ${i+1}</div><div>Replace with your real proof image</div>`}</div>`; }).join('')}
         </div>
-        <div class="proof-note">This prototype keeps the proof page structure from the sample report and leaves four fixed placeholders for your real uploaded images.</div>
         <div class="small-footer blue"><div class="footer-strip"><img src="img/bsmlogo.png" class="footer-logo" /></div><div class="footer-url">www.bigscreenmedia.co.nz</div></div>
       </section>`;
     }
