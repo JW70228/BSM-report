@@ -563,10 +563,11 @@
     .proof-grid {
       padding: 24px 34px 0;
       display: grid; grid-template-columns: 1fr 1fr; gap: 22px 16px; flex: 1;
-    }
-    .proof-box {
+    }    .proof-box {
       width: 540px;
-      height: 530px;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
       background: #d8deee;
       border: 2px dashed #7b89b3;
       border-radius: 8px;
@@ -586,13 +587,13 @@
     }
     .proof-note {
       padding: 0 34px 16px; color: #47557d; font-size: 14px; font-weight: 700;
-    }
-    .proof-box img {
+    }    .proof-box img {
       width: 100%;
       height: 100%;
-      aspect-ratio: 16 / 9;
       object-fit: cover;
       object-position: center;
+      cursor: grab;
+      user-select: none;
       display: block;
       border-radius: 8px;
     }
@@ -880,6 +881,15 @@
       });
     }
 
+    function fileToDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Failed to read proof image.'));
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    }
+
     async function exportPDF() {
       try {
         if (!window.html2canvas) {
@@ -979,6 +989,7 @@
       selectedRegions: new Set(),
       computed: null,
       proofImages: [null, null, null, null],
+      proofPositions: ['50% 50%', '50% 50%', '50% 50%', '50% 50%'],
     };
 
     const els = {
@@ -1588,7 +1599,7 @@ function renderOverviewPage(c) {
       <section class="page proof-page">
         <div class="inner-header"><div>Proof of Delivery Image</div><div>Client: ${escapeHtml(c.client)}</div></div>
         <div class="proof-grid">
-          ${Array.from({length:4}).map((_,i) => { const src = state.proofImages[i]; return `<div class="proof-box">${src ? `<img src="${src}" alt="Proof image ${i+1}" />` : `<div class="proof-icon">🖼</div><div>Placeholder image ${i+1}</div><div>Replace with your real proof image</div>`}</div>`; }).join('')}
+          ${Array.from({length:4}).map((_,i) => { const src = state.proofImages[i]; const pos = state.proofPositions?.[i] || '50% 50%'; return `<div class="proof-box" data-proof-index="${i}">${src ? `<img src="${src}" alt="Proof image ${i+1}" data-proof-index="${i}" data-pos="${pos}" style="object-position:${pos};" />` : `<div class="proof-icon">🖼</div><div>Placeholder image ${i+1}</div><div>Replace with your real proof image</div>`}</div>`; }).join('')}
         </div>
         <div class="small-footer blue"><div class="footer-strip"><img src="img/bsmlogo.png" class="footer-logo" /></div><div class="footer-url">www.bigscreenmedia.co.nz</div></div>
       </section>`;
@@ -1704,11 +1715,13 @@ function renderOverviewPage(c) {
         const file = e.target.files[0];
         if (!file) {
           state.proofImages[index] = null;
+          state.proofPositions[index] = '50% 50%';
           if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
           return;
         }
         try {
-          state.proofImages[index] = await imageFileTo1920x1080DataURL(file);
+          state.proofImages[index] = await fileToDataURL(file);
+          state.proofPositions[index] = '50% 50%';
           if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
         } catch (err) {
           console.error(err);
@@ -1731,6 +1744,48 @@ function renderOverviewPage(c) {
 
     els.printBtn.addEventListener('click', () => {
       exportPDF();
+    });
+
+
+    document.addEventListener('mousedown', e => {
+      const img = e.target.closest('.proof-box img');
+      if (!img) return;
+
+      e.preventDefault();
+      img.style.cursor = 'grabbing';
+
+      const index = Number(img.dataset.proofIndex);
+      const startX = e.clientX;
+      const startY = e.clientY;
+
+      const current = (img.dataset.pos || '50% 50%').replace(/%/g, '').split(' ');
+      const startPosX = parseFloat(current[0]) || 50;
+      const startPosY = parseFloat(current[1]) || 50;
+
+      function move(ev) {
+        const dx = ev.clientX - startX;
+        const dy = ev.clientY - startY;
+
+        const newX = Math.max(-50, Math.min(150, startPosX - dx * 1.2));
+        const newY = Math.max(-50, Math.min(150, startPosY - dy * 1.2));
+
+        const pos = `${newX}% ${newY}%`;
+        img.style.objectPosition = pos;
+        img.dataset.pos = pos;
+
+        if (Number.isInteger(index) && state.proofPositions[index] !== undefined) {
+          state.proofPositions[index] = pos;
+        }
+      }
+
+      function up() {
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('mouseup', up);
+        img.style.cursor = 'grab';
+      }
+
+      document.addEventListener('mousemove', move);
+      document.addEventListener('mouseup', up);
     });
 
     window.addEventListener('resize', fitOverviewValues);
