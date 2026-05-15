@@ -1720,7 +1720,8 @@ function renderOverviewPage(c) {
           return;
         }
         try {
-          state.proofImages[index] = await fileToDataURL(file);
+          state.proofImages[index] =
+  await imageFileTo1920x1080DataURL(file);
           state.proofPositions[index] = '50% 50%';
           if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
         } catch (err) {
