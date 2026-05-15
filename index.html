@@ -261,8 +261,7 @@
       background: #fff;
     }
     .ptext .name { font-size: 18px; font-weight: 800; color: #222; }
-    .ptext .val { font-size: 15px; font-weight: 800; color: var(--bsm-blue-3); }
-        .overview-info {
+    .ptext .val { font-size: 15px; font-weight: 800; color: var(--bsm-blue-3); }    .overview-info {
       font-size: 18px;
       font-weight: 800;
       line-height: 1.45;
@@ -285,11 +284,12 @@
     }
 
     .overview-info .info-value {
-      justify-self: stretch;
+      justify-self: end;
       text-align: right;
       white-space: nowrap;
-      min-width: 0;
-      max-width: 100%;
+      display: inline-block;
+      width: auto;
+      max-width: none;
       overflow: visible;
       font-size: 18px;
       transform-origin: right center;
@@ -1634,39 +1634,40 @@ function renderOverviewPage(c) {
     <div class="contact-footer-line">Nationwide Digital Advertising, Creative Brand Exposure!</div>
   </section>`;
 }
-
-
     function fitOverviewValues() {
       document.querySelectorAll('.overview-info').forEach(box => {
         const items = Array.from(box.children);
+        const labels = [];
+        const values = [];
 
         for (let i = 0; i < items.length; i += 2) {
-          const label = items[i];
-          const value = items[i + 1];
-          if (!label || !value) continue;
+          if (items[i]) labels.push(items[i]);
+          if (items[i + 1]) values.push(items[i + 1]);
+        }
 
+        const gap = parseFloat(getComputedStyle(box).columnGap) || 0;
+        const maxLabelWidth = Math.max(
+          ...labels.map(label => label.getBoundingClientRect().width)
+        );
+        const available = Math.max(80, box.clientWidth - maxLabelWidth - gap);
+
+        values.forEach(value => {
           value.style.fontSize = '18px';
           value.style.transform = 'none';
-          value.style.width = '';
-
-          const boxWidth = box.clientWidth;
-          const labelWidth = label.getBoundingClientRect().width;
-          const gap = parseFloat(getComputedStyle(box).columnGap) || 0;
-          const available = Math.max(80, boxWidth - labelWidth - gap);
-
-          value.style.width = available + 'px';
+          value.style.width = 'auto';
 
           let size = 18;
-          while (value.scrollWidth > available && size > 8) {
-            size -= 0.5;
+
+          while (value.getBoundingClientRect().width > available && size > 15) {
+            size -= 0.2;
             value.style.fontSize = size + 'px';
           }
 
-          if (value.scrollWidth > available) {
-            const scale = Math.max(0.72, available / value.scrollWidth);
+          if (value.getBoundingClientRect().width > available) {
+            const scale = Math.max(0.80, available / value.getBoundingClientRect().width);
             value.style.transform = `scaleX(${scale})`;
           }
-        }
+        });
       });
     }
 
