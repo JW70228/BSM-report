@@ -569,8 +569,8 @@
       overflow: hidden;
       position: relative;
       background: #d8deee;
-      border: 2px dashed #7b89b3;
-      border-radius: 8px;
+      border: none;
+      border-radius: 0;
 
       display: flex;
       align-items: center;
@@ -595,7 +595,7 @@
       cursor: grab;
       user-select: none;
       display: block;
-      border-radius: 8px;
+      border-radius: 0;
     }
     .proof-upload-grid {
       display: grid;
@@ -983,6 +983,10 @@
     };
     const CATEGORY_ORDER = ['Restaurant', 'Supermarket', 'Sports Centre', 'Service Centre'];
     const REGION_COLORS = ['#4dc0b1','#1f4f86','#9cbcc5','#6a54ba','#4a7ccf','#3050a6','#b04da2','#f3347c','#4c9b7e','#8556b8'];
+    const DRAFT_DB_NAME = 'bsm-report-drafts';
+    const DRAFT_STORE_NAME = 'drafts';
+    const DRAFT_KEY = 'current-report';
+    let draftSaveTimer = null;
 
     const state = {
       rawRows: [],
@@ -1006,6 +1010,107 @@
       statusText: document.getElementById('statusText'),
       proofInputs: [1,2,3,4].map(i => document.getElementById(`proofInput${i}`)),
     };
+
+    function openDraftDb() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DRAFT_DB_NAME, 1);
+        request.onupgradeneeded = () => {
+          if (!request.result.objectStoreNames.contains(DRAFT_STORE_NAME)) {
+            request.result.createObjectStore(DRAFT_STORE_NAME);
+          }
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function writeDraft() {
+      const db = await openDraftDb();
+      const draft = {
+        clientName: els.clientName.value,
+        campaignName: els.campaignName.value,
+        startDate: els.startDate.value,
+        endDate: els.endDate.value,
+        adSeconds: els.adSeconds.value,
+        rawRows: state.rawRows,
+        selectedRegions: [...state.selectedRegions],
+        proofImages: state.proofImages,
+        proofPositions: state.proofPositions,
+        reportGenerated: Boolean(state.computed),
+        savedAt: Date.now(),
+      };
+
+      await new Promise((resolve, reject) => {
+        const transaction = db.transaction(DRAFT_STORE_NAME, 'readwrite');
+        transaction.objectStore(DRAFT_STORE_NAME).put(draft, DRAFT_KEY);
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error);
+      });
+      db.close();
+    }
+
+    function saveDraftSoon() {
+      clearTimeout(draftSaveTimer);
+      draftSaveTimer = setTimeout(() => {
+        writeDraft().catch(err => console.error('Draft save failed:', err));
+      }, 300);
+    }
+
+    async function readDraft() {
+      const db = await openDraftDb();
+      const draft = await new Promise((resolve, reject) => {
+        const transaction = db.transaction(DRAFT_STORE_NAME, 'readonly');
+        const request = transaction.objectStore(DRAFT_STORE_NAME).get(DRAFT_KEY);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+      db.close();
+      return draft;
+    }
+
+    async function restoreDraft() {
+      try {
+        const draft = await readDraft();
+        if (!draft) return;
+
+        els.clientName.value = draft.clientName || '';
+        els.campaignName.value = draft.campaignName || '';
+        els.startDate.value = draft.startDate || '';
+        els.endDate.value = draft.endDate || '';
+        els.adSeconds.value = draft.adSeconds || '15';
+        state.rawRows = Array.isArray(draft.rawRows) ? draft.rawRows : [];
+        state.proofImages = Array.isArray(draft.proofImages)
+          ? [...draft.proofImages, null, null, null, null].slice(0, 4)
+          : [null, null, null, null];
+        state.proofPositions = Array.isArray(draft.proofPositions)
+          ? [...draft.proofPositions, '50% 50%', '50% 50%', '50% 50%', '50% 50%'].slice(0, 4)
+          : ['50% 50%', '50% 50%', '50% 50%', '50% 50%'];
+
+        if (state.rawRows.length) {
+          seedRegions(state.rawRows);
+          const savedRegions = new Set(draft.selectedRegions || []);
+          state.selectedRegions = savedRegions;
+          els.regionGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.checked = savedRegions.has(cb.dataset.region);
+          });
+        }
+
+        if (draft.reportGenerated && state.rawRows.length) {
+          try {
+            state.computed = buildComputed();
+            render();
+            requestAnimationFrame(fitOverviewValues);
+          } catch (err) {
+            console.error('Saved report could not be regenerated:', err);
+          }
+        }
+
+        const savedTime = new Date(draft.savedAt || Date.now()).toLocaleString('en-NZ');
+        els.statusText.textContent = `Draft restored automatically (saved ${savedTime}).`;
+      } catch (err) {
+        console.error('Draft restore failed:', err);
+      }
+    }
 
     function parseCSV(text) {
       const lines = text.replace(/^\uFEFF/, '').split(/\r?\n/).filter(Boolean);
@@ -1136,6 +1241,7 @@
         cb.addEventListener('change', () => {
           if (cb.checked) state.selectedRegions.add(cb.dataset.region);
           else state.selectedRegions.delete(cb.dataset.region);
+          saveDraftSoon();
         });
       });
     }
@@ -1700,6 +1806,7 @@ function renderOverviewPage(c) {
       }
       seedRegions(state.rawRows);
       els.statusText.textContent = `${state.rawRows.length} valid screen rows loaded. Choose regions, fill campaign inputs, then click Generate Report.`;
+      saveDraftSoon();
     }
 
     els.csvInput.addEventListener('change', e => {
@@ -1717,6 +1824,7 @@ function renderOverviewPage(c) {
           state.proofImages[index] = null;
           state.proofPositions[index] = '50% 50%';
           if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
+          saveDraftSoon();
           return;
         }
         try {
@@ -1724,6 +1832,7 @@ function renderOverviewPage(c) {
   await imageFileTo1920x1080DataURL(file);
           state.proofPositions[index] = '50% 50%';
           if (state.computed) { render(); requestAnimationFrame(fitOverviewValues); }
+          saveDraftSoon();
         } catch (err) {
           console.error(err);
           alert(err.message || 'Proof image resize failed.');
@@ -1738,6 +1847,7 @@ function renderOverviewPage(c) {
         render();
         requestAnimationFrame(fitOverviewValues);
         els.statusText.textContent = `Report generated: ${state.computed.details.length} selected screens, ${state.computed.marketsCount} markets, ${state.computed.platformsCount} platforms.`;
+        saveDraftSoon();
       } catch (err) {
         alert(err.message);
       }
@@ -1783,13 +1893,30 @@ function renderOverviewPage(c) {
         document.removeEventListener('mousemove', move);
         document.removeEventListener('mouseup', up);
         img.style.cursor = 'grab';
+        saveDraftSoon();
       }
 
       document.addEventListener('mousemove', move);
       document.addEventListener('mouseup', up);
     });
 
+    [els.clientName, els.campaignName, els.startDate, els.endDate, els.adSeconds].forEach(input => {
+      input.addEventListener('input', saveDraftSoon);
+      input.addEventListener('change', saveDraftSoon);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        clearTimeout(draftSaveTimer);
+        writeDraft().catch(err => console.error('Draft save failed:', err));
+      }
+    });
+    window.addEventListener('pagehide', () => {
+      clearTimeout(draftSaveTimer);
+      writeDraft().catch(err => console.error('Draft save failed:', err));
+    });
     window.addEventListener('resize', fitOverviewValues);
+    restoreDraft();
   </script>
 </body>
 </html>
